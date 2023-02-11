@@ -1,0 +1,29 @@
+services:
+
+  laravel-app:
+    container_name: laravel-app
+    build: .
+    volumes:
+      - ./laravel-app:/var/www/html
+    ports:
+      - 8080:80
+  
+  mysql_db:
+    image: mysql:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: uchedb
+    volumes:
+            - db-data:/var/lib/mysql  
+    ports:
+    - 3306:3306
+  
+  phpmyadmin:
+    image: phpmyadmin:latest
+    ports:
+      - 8081:80
+
+
+volumes:
+    db-data: ~     
+    
